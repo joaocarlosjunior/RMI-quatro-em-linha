@@ -1,7 +1,11 @@
-
 # Quatro em Linha com Java RMI
+- Instituição: Universidade Estadual de Santa Cruz
+- Curso: Ciência da Computação
+- Disciplina: DEC000100 - SISTEMAS DISTRIBUIDOS
+- Docente: Dr. Paulo Andre Sperandio Giacomin
+- Discente: João Carlos Ribas Chaves Júnior
 
-Este é um projeto que implementa o jogo Quatro em Linha em Java usando RMI (Remote Method Invocation).
+<br>Este é um projeto desenvolvido para a disciplina de Sistemas Distribuidos que implementa o jogo Quatro em Linha em Java usando RMI (Remote Method Invocation).
 
 ## Descrição
 
