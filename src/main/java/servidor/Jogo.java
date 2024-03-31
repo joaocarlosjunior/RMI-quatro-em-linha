@@ -48,6 +48,7 @@ public class Jogo extends UnicastRemoteObject implements IJogo {
 
     }
 
+    @Override
     public int verificaSeTemPartida(int id) throws RemoteException {
         Jogador jogadorAtual;
         try {
@@ -107,6 +108,7 @@ public class Jogo extends UnicastRemoteObject implements IJogo {
         }
     }
 
+    @Override
     public String segundoJogador(int id) throws RemoteException {
         Jogador jogador;
         try {
@@ -124,6 +126,7 @@ public class Jogo extends UnicastRemoteObject implements IJogo {
 
     }
 
+    @Override
     public int verificaTurno(int id) throws RemoteException {
         Jogador jogador;
         try {
@@ -139,6 +142,7 @@ public class Jogo extends UnicastRemoteObject implements IJogo {
         }
     }
 
+    @Override
     public int verificaGanhador(int id) throws RemoteException{
         Jogador jogador;
         try {
@@ -158,6 +162,7 @@ public class Jogo extends UnicastRemoteObject implements IJogo {
         return 0;
     }
 
+    @Override
     public String imprimirTabuleiro() throws RemoteException {
 
         String[][] tabuleiro = this.partida.getTabuleiro().getTabuleiro();
@@ -175,6 +180,7 @@ public class Jogo extends UnicastRemoteObject implements IJogo {
                 "\n";
     }
 
+    @Override
     public String getSimbolo(int id) throws RemoteException {
         Jogador jogador;
         try {
@@ -185,6 +191,7 @@ public class Jogo extends UnicastRemoteObject implements IJogo {
         return jogador.getSimbolo();
     }
 
+    @Override
     public String getNomeJogador(int id) throws RemoteException {
         Jogador jogador;
         try {
