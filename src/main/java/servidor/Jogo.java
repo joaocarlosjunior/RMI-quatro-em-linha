@@ -59,9 +59,8 @@ public class Jogo extends UnicastRemoteObject implements IJogo {
     public int verificaSeTemPartida(int id) throws RemoteException {
         Jogador jogadorAtual;
         try {
-            jogadorAtual = getPlayerById(id);
+            jogadorAtual = getJogadorById(id);
         } catch (JogadorInexistenteException e) {
-            System.out.println(e.getMessage());
             return -1;
         }
 
@@ -93,7 +92,7 @@ public class Jogo extends UnicastRemoteObject implements IJogo {
 
         Jogador jogador;
         try {
-            jogador = getPlayerById(id);
+            jogador = getJogadorById(id);
         } catch (JogadorInexistenteException e) {
             throw new RuntimeException(e);
         }
@@ -101,7 +100,7 @@ public class Jogo extends UnicastRemoteObject implements IJogo {
         this.partida.inserirJogada(posicaoJogada, jogador);
     }
 
-    private Jogador getPlayerById(int id) throws JogadorInexistenteException {
+    private Jogador getJogadorById(int id) throws JogadorInexistenteException {
         playersReadLock.lock();
         try {
             if (this.partida.getJogador1().getId() == id) {
@@ -119,7 +118,7 @@ public class Jogo extends UnicastRemoteObject implements IJogo {
     public String segundoJogador(int id) throws RemoteException {
         Jogador jogador;
         try {
-            jogador = getPlayerById(id);
+            jogador = getJogadorById(id);
         } catch (JogadorInexistenteException e) {
             System.out.println(e.getMessage());
             return null;
@@ -133,10 +132,10 @@ public class Jogo extends UnicastRemoteObject implements IJogo {
 
     }
 
-    public int isMyturn(int id) throws RemoteException {
+    public int verificaTurno(int id) throws RemoteException {
         Jogador jogador;
         try {
-            jogador = getPlayerById(id);
+            jogador = getJogadorById(id);
         } catch (JogadorInexistenteException e) {
             throw new RuntimeException(e);
         }
@@ -145,9 +144,6 @@ public class Jogo extends UnicastRemoteObject implements IJogo {
 
         Jogador jogadorGanhador = this.partida.verificaVitoria();
         if (jogadorGanhador != null) {
-            System.out.println(this.partida.getJogador1().getNome());
-            System.out.println(this.partida.getJogador2().getNome());
-            System.out.println(jogadorGanhador.getNome());
             if(jogadorGanhador == jogador){
                 return 5;
             }else{
@@ -182,7 +178,7 @@ public class Jogo extends UnicastRemoteObject implements IJogo {
     public String getSimbolo(int id) throws RemoteException {
         Jogador jogador;
         try {
-            jogador = this.getPlayerById(id);
+            jogador = this.getJogadorById(id);
         } catch (JogadorInexistenteException e) {
             throw new RuntimeException(e);
         }
@@ -192,7 +188,7 @@ public class Jogo extends UnicastRemoteObject implements IJogo {
     public String getNomeJogador(int id) throws RemoteException {
         Jogador jogador;
         try {
-            jogador = this.getPlayerById(id);
+            jogador = this.getJogadorById(id);
         } catch (JogadorInexistenteException e) {
             throw new RuntimeException(e);
         }
