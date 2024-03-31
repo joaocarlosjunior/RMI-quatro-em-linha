@@ -59,7 +59,7 @@ public class Cliente {
                     jogo.lerJogada(id, posicao);
                     break;
                 } catch (PosicaoInvalidaException | ColunaPreenchidaException e) {
-                    System.out.println(e.getMessage());
+                    System.out.println("\n" + e.getMessage());
                 }finally {
                     System.out.println(jogo.imprimirTabuleiro());
                 }
@@ -67,14 +67,14 @@ public class Cliente {
 
         } else if(meuTurno == 5){
             System.out.println(jogo.imprimirTabuleiro());
-            System.out.println("Voce Ganhou");
+            System.out.println("Voce Ganhou!");
             sc.close();
             System.exit(1);
 
         }else if(meuTurno == 6 ){
 
             System.out.println(jogo.imprimirTabuleiro());
-            System.out.println("Voce perdeu");
+            System.out.println("Voce perdeu!");
             sc.close();
             System.exit(1);
 
