@@ -49,8 +49,21 @@ public class Cliente {
         String simbolo = jogo.getSimbolo(id);
         String nome = jogo.getNomeJogador(id);
 
-        if (meuTurno == 1) {
+        if(jogo.verificaGanhador(id) == 1 || jogo.verificaGanhador(id) == 2){
+            if(jogo.verificaGanhador(id) == 1){
+                System.out.println(jogo.imprimirTabuleiro());
+                System.out.println("Voce Ganhou!!");
+                sc.close();
+                System.exit(1);
+            }else{
+                System.out.println(jogo.imprimirTabuleiro());
+                System.out.println("Voce Perdeu!!");
+                sc.close();
+                System.exit(1);
+            }
+        }
 
+        if (meuTurno == 1) {
             System.out.println(jogo.imprimirTabuleiro());
             do {
                 try {
@@ -64,20 +77,6 @@ public class Cliente {
                     System.out.println(jogo.imprimirTabuleiro());
                 }
             } while (true);
-
-        } else if(meuTurno == 5){
-            System.out.println(jogo.imprimirTabuleiro());
-            System.out.println("Voce Ganhou!");
-            sc.close();
-            System.exit(1);
-
-        }else if(meuTurno == 6 ){
-
-            System.out.println(jogo.imprimirTabuleiro());
-            System.out.println("Voce perdeu!");
-            sc.close();
-            System.exit(1);
-
         }
 
     }
