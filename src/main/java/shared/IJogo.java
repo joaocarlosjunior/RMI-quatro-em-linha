@@ -2,11 +2,9 @@ package shared;
 
 import exceptions.ColunaPreenchidaException;
 import exceptions.PosicaoInvalidaException;
-import servidor.Jogador;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.HashMap;
 
 public interface IJogo extends Remote {
 
