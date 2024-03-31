@@ -7,9 +7,6 @@ import shared.IJogo;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -23,11 +20,6 @@ public class Jogo extends UnicastRemoteObject implements IJogo {
     private final ReadWriteLock playersReadWriteLock = new ReentrantReadWriteLock();
     private final Lock playersReadLock = playersReadWriteLock.readLock();
     private final Lock playersWriteLock = playersReadWriteLock.writeLock();
-
-    private static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
-    private static final String ANSI_BLACK = "\u001B[30m";
-    private static final String ANSI_RESET = "\u001B[0m";
-    private static final String ANSI_GREEN_BACK = "\u001B[42m";
 
     private int nextId;
 
@@ -140,22 +132,30 @@ public class Jogo extends UnicastRemoteObject implements IJogo {
             throw new RuntimeException(e);
         }
 
-        HashMap<Integer, String> opcao = new HashMap<>();
-
-        Jogador jogadorGanhador = this.partida.verificaVitoria();
-        if (jogadorGanhador != null) {
-            if(jogadorGanhador == jogador){
-                return 5;
-            }else{
-                return 6;
-            }
-        }
-
         if (jogador.getPartida().getJogadorAtual() == jogador) {
             return 1;
         } else {
             return 0;
         }
+    }
+
+    public int verificaGanhador(int id) throws RemoteException{
+        Jogador jogador;
+        try {
+            jogador = getJogadorById(id);
+        } catch (JogadorInexistenteException e) {
+            throw new RuntimeException(e);
+        }
+
+        Jogador jogadorGanhador = this.partida.verificaVitoria();
+        if (jogadorGanhador != null) {
+            if(jogadorGanhador == jogador){
+                return 1;
+            }else{
+                return 2;
+            }
+        }
+        return 0;
     }
 
     public String imprimirTabuleiro() throws RemoteException {

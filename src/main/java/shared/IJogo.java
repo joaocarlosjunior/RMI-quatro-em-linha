@@ -26,4 +26,6 @@ public interface IJogo extends Remote {
 
     String getNomeJogador(int id) throws RemoteException;
 
+    int verificaGanhador(int id) throws RemoteException;
+
 }
