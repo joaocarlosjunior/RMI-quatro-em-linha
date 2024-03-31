@@ -18,7 +18,7 @@ public interface IJogo extends Remote {
 
     String segundoJogador(int id)throws RemoteException;
 
-    int isMyturn(int id)throws RemoteException;
+    int verificaTurno(int id)throws RemoteException;
 
     String imprimirTabuleiro() throws RemoteException;
 
