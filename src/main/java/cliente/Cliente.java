@@ -45,13 +45,11 @@ public class Cliente {
 
     private static void jogar(int id, IJogo jogo) throws RemoteException{
         Scanner sc = new Scanner(System.in);
-        int isMyTurn;
-
-        isMyTurn = jogo.isMyturn(id);
+        int meuTurno = jogo.verificaTurno(id);
         String simbolo = jogo.getSimbolo(id);
         String nome = jogo.getNomeJogador(id);
 
-        if (isMyTurn == 1) {
+        if (meuTurno == 1) {
 
             System.out.println(jogo.imprimirTabuleiro());
             do {
@@ -67,13 +65,13 @@ public class Cliente {
                 }
             } while (true);
 
-        } else if(isMyTurn == 5){
+        } else if(meuTurno == 5){
             System.out.println(jogo.imprimirTabuleiro());
             System.out.println("Voce Ganhou");
             sc.close();
             System.exit(1);
 
-        }else if(isMyTurn == 6 ){
+        }else if(meuTurno == 6 ){
 
             System.out.println(jogo.imprimirTabuleiro());
             System.out.println("Voce perdeu");
