@@ -117,7 +117,7 @@ public class Partida {
                 }
 
                 if (count == 4) {
-                    if(this.tabuleiro.getTabuleiro()[i][j].equals(" x ")){
+                    if(this.tabuleiro.getTabuleiro()[i][j].equals(this.jogador1.getSimbolo())){
                         return this.jogador1;
                     }else{
                         return this.jogador2;
@@ -157,7 +157,7 @@ public class Partida {
                         simboloAtual = this.tabuleiro.getTabuleiro()[linhaAnterior][k - 1];
                         count++;
                         if (count == 4) {
-                            if(this.tabuleiro.getTabuleiro()[linhaAnterior][k - 1].equals(" x ")){
+                            if(this.tabuleiro.getTabuleiro()[linhaAnterior][k - 1].equals(this.jogador1.getSimbolo())){
                                 return this.jogador1;
                             }else{
                                 return this.jogador2;
@@ -194,7 +194,7 @@ public class Partida {
                         simboloAtual = this.tabuleiro.getTabuleiro()[linhaAnterior][k + 1];
                         count++;
                         if (count == 4) {
-                            if(this.tabuleiro.getTabuleiro()[linhaAnterior][k + 1].equals(" x ")){
+                            if(this.tabuleiro.getTabuleiro()[linhaAnterior][k + 1].equals(this.jogador1.getSimbolo())){
                                 return this.jogador1;
                             }else{
                                 return this.jogador2;
