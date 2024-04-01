@@ -144,6 +144,11 @@ public class Jogo extends UnicastRemoteObject implements IJogo {
 
     @Override
     public int verificaGanhador(int id) throws RemoteException{
+
+        if(this.partida.verificaEmpate()){
+            return 3;
+        }
+
         Jogador jogador;
         try {
             jogador = getJogadorById(id);

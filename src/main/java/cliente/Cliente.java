@@ -49,15 +49,20 @@ public class Cliente {
         String simbolo = jogo.getSimbolo(id);
         String nome = jogo.getNomeJogador(id);
 
-        if(jogo.verificaGanhador(id) == 1 || jogo.verificaGanhador(id) == 2){
+        if(jogo.verificaGanhador(id) == 1 || jogo.verificaGanhador(id) == 2 || jogo.verificaGanhador(id) == 3){
             if(jogo.verificaGanhador(id) == 1){
                 System.out.println(jogo.imprimirTabuleiro());
                 System.out.println("Voce Ganhou!!");
                 sc.close();
                 System.exit(1);
-            }else{
+            }else if(jogo.verificaGanhador(id) == 2){
                 System.out.println(jogo.imprimirTabuleiro());
                 System.out.println("Voce Perdeu!!");
+                sc.close();
+                System.exit(1);
+            }else{
+                System.out.println(jogo.imprimirTabuleiro());
+                System.out.println("Empate!!");
                 sc.close();
                 System.exit(1);
             }

@@ -3,14 +3,19 @@ package servidor;
 import exceptions.ColunaPreenchidaException;
 import exceptions.PosicaoInvalidaException;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class Partida {
-   
+
     private Tabuleiro tabuleiro;
     private boolean partidaDisponivel;
     private Jogador jogador1, jogador2;
     private Jogador jogadorAtual;
 
-    public Partida(){
+    public Partida() {
         this.partidaDisponivel = false;
         this.tabuleiro = new Tabuleiro();
     }
@@ -55,9 +60,9 @@ public class Partida {
     }
 
     public Jogador verificaVitoria() {
-        if(verificaVertical() != null ){
+        if (verificaVertical() != null) {
             return verificaVertical();
-        }else if(verificaHorizontal() != null){
+        } else if (verificaHorizontal() != null) {
             return verificaHorizontal();
         } else if (verificaDiagonalEsquerda() != null) {
             return verificaDiagonalEsquerda();
@@ -67,32 +72,33 @@ public class Partida {
         return null;
     }
 
+    public boolean verificaEmpate() {
+        List<String> list = Stream.of(this.tabuleiro.getTabuleiro()).flatMap(Arrays::stream).toList();
+        return !list.contains(" * ");
+    }
+
     private Jogador verificaVertical() {
         String simbolo = "";
         int count = 0;
 
         for (int i = this.tabuleiro.getQuantidadeLinhas() - 1; i >= 3; i--) {
-            for(int j = 0; j < this.tabuleiro.getQuantidadeColunas(); j++){
+            for (int j = 0; j < this.tabuleiro.getQuantidadeColunas(); j++) {
 
-                if(!this.tabuleiro.getTabuleiro()[i][j].equals(" * ")){
+                if (!this.tabuleiro.getTabuleiro()[i][j].equals(" * ")) {
                     simbolo = this.tabuleiro.getTabuleiro()[i][j];
                     count++;
-                }else{
+                } else {
                     continue;
                 }
 
-                for(int k = i - 1; k >= 0; k--){
-                    if(this.tabuleiro.getTabuleiro()[k][j].equals(simbolo)){
+                for (int k = i - 1; k >= 0; k--) {
+                    if (this.tabuleiro.getTabuleiro()[k][j].equals(simbolo)) {
                         simbolo = this.tabuleiro.getTabuleiro()[k][j];
                         count++;
                         if (count == 4) {
-                            if(this.tabuleiro.getTabuleiro()[k][j].equals(this.jogador1.getSimbolo())){
-                                return this.jogador1;
-                            }else if(this.tabuleiro.getTabuleiro()[k][j].equals(this.jogador2.getSimbolo())){
-                                return this.jogador2;
-                            }
+                            return this.tabuleiro.getTabuleiro()[k][j].equals(this.jogador1.getSimbolo())? this.jogador1: this.jogador2;
                         }
-                    }else{
+                    } else {
                         count = 0;
                         break;
                     }
@@ -117,11 +123,7 @@ public class Partida {
                 }
 
                 if (count == 4) {
-                    if(this.tabuleiro.getTabuleiro()[i][j].equals(this.jogador1.getSimbolo())){
-                        return this.jogador1;
-                    }else{
-                        return this.jogador2;
-                    }
+                    return this.tabuleiro.getTabuleiro()[i][j].equals(this.jogador1.getSimbolo())? this.jogador1: this.jogador2;
                 } else if (j == this.tabuleiro.getQuantidadeColunas() - 1) {
                     if (!this.tabuleiro.getTabuleiro()[i][j].equals(simboloAtual)) {
                         count = 0;
@@ -157,11 +159,7 @@ public class Partida {
                         simboloAtual = this.tabuleiro.getTabuleiro()[linhaAnterior][k - 1];
                         count++;
                         if (count == 4) {
-                            if(this.tabuleiro.getTabuleiro()[linhaAnterior][k - 1].equals(this.jogador1.getSimbolo())){
-                                return this.jogador1;
-                            }else{
-                                return this.jogador2;
-                            }
+                            return this.tabuleiro.getTabuleiro()[linhaAnterior][k - 1].equals(this.jogador1.getSimbolo())? this.jogador1: this.jogador2;
                         }
                     } else {
                         count = 0;
@@ -194,11 +192,7 @@ public class Partida {
                         simboloAtual = this.tabuleiro.getTabuleiro()[linhaAnterior][k + 1];
                         count++;
                         if (count == 4) {
-                            if(this.tabuleiro.getTabuleiro()[linhaAnterior][k + 1].equals(this.jogador1.getSimbolo())){
-                                return this.jogador1;
-                            }else{
-                                return this.jogador2;
-                            }
+                            return this.tabuleiro.getTabuleiro()[linhaAnterior][k + 1].equals(this.jogador1.getSimbolo())? this.jogador1: this.jogador2;
                         }
                     } else {
                         count = 0;
@@ -211,11 +205,13 @@ public class Partida {
         return null;
     }
 
-    public Tabuleiro getTabuleiro(){
+    public Tabuleiro getTabuleiro() {
         return this.tabuleiro;
     }
 
-    public Jogador getJogadorAtual() { return this.jogadorAtual; }
+    public Jogador getJogadorAtual() {
+        return this.jogadorAtual;
+    }
 
     private void changeTurn() {
         this.jogadorAtual = (this.jogadorAtual == this.jogador1 ? this.jogador2 : this.jogador1);
