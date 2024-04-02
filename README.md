@@ -28,11 +28,15 @@ Serão necessario 3 terminais.
 ```sh
 git clone git@github.com:joaocarlosjunior/RMI-quatro-em-linha.git
 ```
-2. Navegue até o diretório clonado:
+2. Verifique a versão do seu JDK e altere no pom.xml para versão instalada em sua máquina:
+```sh
+java -version
+```
+3. Navegue até o diretório clonado:
 ```sh
 cd RMI-quatro-em-linha
 ```
-3. Em um terminal compile e empacote o projeto:
+4. Em um terminal compile e empacote o projeto:
 - Linux/unix
 ```sh
 ./mvnw package
@@ -41,15 +45,15 @@ cd RMI-quatro-em-linha
 ```sh
 mvnw.cmd package
 ```
-4. Navegue até o diretório do pacote gerado:
+5. Navegue até o diretório do pacote gerado:
 ```sh
 cd target
 ```
-5. Execute o servidor
+6. Execute o servidor
 ```sh
 java -cp RMI-quatro-em-linha-1.0-SNAPSHOT.jar servidor.Servidor  
 ```
-6. Em outros dois terminais execute os clientes
+7. Em outros dois terminais execute os clientes
 ```sh
 java -cp RMI-quatro-em-linha-1.0-SNAPSHOT.jar cliente.Cliente localhost [nome do jogador]
 ``` 
