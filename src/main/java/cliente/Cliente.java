@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 public class Cliente {
 
+    private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
 
@@ -26,50 +27,31 @@ public class Cliente {
                 if (verificaPartida == -2) {
                     System.out.println("Aguardando Segundo Jogador!");
                 }
-                Thread.sleep(1000);
+                Thread.sleep(3000);
                 verificaPartida = jogo.verificaSeTemPartida(id);
             }
 
-            System.out.println("Segundo jogador " + jogo.segundoJogador(id) + " entrou ....");
+            System.out.println("Segundo jogador - " + jogo.segundoJogador(id).toUpperCase());
 
-            System.out.println(jogo.imprimirTabuleiro());
             while (true) {
+                verificaGanhador(id, jogo);
                 jogar(id,jogo);
             }
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());;
         }
 
     }
 
     private static void jogar(int id, IJogo jogo) throws RemoteException{
-        Scanner sc = new Scanner(System.in);
         int meuTurno = jogo.verificaTurno(id);
-        String simbolo = jogo.getSimbolo(id);
-        String nome = jogo.getNomeJogador(id);
-
-        if(jogo.verificaGanhador(id) == 1 || jogo.verificaGanhador(id) == 2 || jogo.verificaGanhador(id) == 3){
-            if(jogo.verificaGanhador(id) == 1){
-                System.out.println(jogo.imprimirTabuleiro());
-                System.out.println("Voce Ganhou!!");
-                sc.close();
-                System.exit(1);
-            }else if(jogo.verificaGanhador(id) == 2){
-                System.out.println(jogo.imprimirTabuleiro());
-                System.out.println("Voce Perdeu!!");
-                sc.close();
-                System.exit(1);
-            }else{
-                System.out.println(jogo.imprimirTabuleiro());
-                System.out.println("Empate!!");
-                sc.close();
-                System.exit(1);
-            }
-        }
 
         if (meuTurno == 1) {
-            System.out.println(jogo.imprimirTabuleiro());
+            String simbolo = jogo.getSimbolo(id);
+            String nome = jogo.getNomeJogador(id);
+            limparConsole();
+            imprimirTabuleiro(jogo.getTabuleiro());
             do {
                 try {
                     System.out.println("Informe a posicao a ser jogada - " + nome.toUpperCase() + " " + simbolo + " : ");
@@ -79,10 +61,61 @@ public class Cliente {
                 } catch (PosicaoInvalidaException | ColunaPreenchidaException e) {
                     System.out.println("\n" + e.getMessage());
                 }finally {
-                    System.out.println(jogo.imprimirTabuleiro());
+                    imprimirTabuleiro(jogo.getTabuleiro());
                 }
             } while (true);
         }
-
     }
+
+    private static void verificaGanhador(int id, IJogo jogo) throws RemoteException {
+        int aGanhador = jogo.verificaGanhador(id);
+
+        if(aGanhador == 1 || aGanhador == 2 || aGanhador == 3){
+            limparConsole();
+            if(aGanhador == 1){
+                imprimirTabuleiro(jogo.getTabuleiro());
+                System.out.println("\u001B[42m" + "\u001B[30m" + "Voce Ganhou!!" + "\u001B[0m");
+                sc.close();
+                System.exit(1);
+            }else if(aGanhador == 2){
+                imprimirTabuleiro(jogo.getTabuleiro());
+                System.out.println("\u001B[41m" + "\u001B[30m" + "Voce Perdeu!!" + "\u001B[0m");
+                sc.close();
+                System.exit(1);
+            }else{
+                imprimirTabuleiro(jogo.getTabuleiro());
+                System.out.println("\u001B[47m" + "\u001B[30m" + "Empate!!" + "\u001B[0m");
+                sc.close();
+                System.exit(1);
+            }
+        }
+    }
+
+    private static void imprimirTabuleiro(String[][] tabuleiro){
+        System.out.println(" 0  1  2  3  4  5  6  7  8 ");
+        for (String[] elementos : tabuleiro) {
+            for (String elemento : elementos) {
+                System.out.print(elemento);
+            }
+            System.out.println();
+        }
+    }
+
+    private static void limparConsole(){
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "cls");
+                Process startProcess = pb.inheritIO().start();
+                startProcess.waitFor();
+            }
+            else {
+                ProcessBuilder pb = new ProcessBuilder("clear");
+                Process startProcess = pb.inheritIO().start();
+                startProcess.waitFor();
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 }
