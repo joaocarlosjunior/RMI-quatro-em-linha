@@ -61,7 +61,7 @@ java -cp RMI-quatro-em-linha-1.0-SNAPSHOT.jar cliente.Cliente localhost [nome do
 
 ## Exemplo de partida
 
-![](https://github.com/joaocarlosjunior/RMI-quatro-em-linha/blob/main/assets/partida-exemplo.gif)
+![](https://github.com/joaocarlosjunior/RMI-quatro-em-linha/blob/main/assets/exemplo-partida.gif)
 
 ## Contato
 - [LinkedIn](https://www.linkedin.com/in/joaocarlosjr/)
