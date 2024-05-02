@@ -59,10 +59,15 @@ java -cp RMI-quatro-em-linha-1.0-SNAPSHOT.jar cliente.Cliente localhost [nome do
 ``` 
 
 
-## Exemplo de partida
-
+## Exemplos de partidas
+#### Vitória Vertical
 ![](https://github.com/joaocarlosjunior/RMI-quatro-em-linha/blob/main/assets/exemplo-partida.gif)
-
+##### Vitória Horizontal
+![](https://github.com/joaocarlosjunior/RMI-quatro-em-linha/blob/main/assets/exemplo-partida-h.gif)
+#### Vitória Diagonal Esquerda
+![](https://github.com/joaocarlosjunior/RMI-quatro-em-linha/blob/main/assets/exemplo-partida-diagonal-e.gif)
+#### Vitória Diagonal Direita
+![](https://github.com/joaocarlosjunior/RMI-quatro-em-linha/blob/main/assets/exemplo-partida-diagonal-d.gif)
 ## Contato
 - [LinkedIn](https://www.linkedin.com/in/joaocarlosjr/)
 
