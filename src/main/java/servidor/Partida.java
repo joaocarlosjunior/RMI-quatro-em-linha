@@ -1,11 +1,7 @@
 package servidor;
 
-import exceptions.ColunaPreenchidaException;
-import exceptions.PosicaoInvalidaException;
-
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Partida {
@@ -46,7 +42,7 @@ public class Partida {
         return partidaDisponivel;
     }
 
-    public void inserirJogada(int numeroPosicaojogada, Jogador jogador) throws PosicaoInvalidaException, ColunaPreenchidaException {
+    public void inserirJogada(int numeroPosicaojogada, Jogador jogador){
 
         this.jogadorAtual = jogador;
 
@@ -60,14 +56,26 @@ public class Partida {
     }
 
     public Jogador verificaVitoria() {
-        if (verificaVertical() != null) {
-            return verificaVertical();
-        } else if (verificaHorizontal() != null) {
-            return verificaHorizontal();
-        } else if (verificaDiagonalEsquerda() != null) {
-            return verificaDiagonalEsquerda();
-        } else if (verificaDiagonalDireita() != null) {
-            return verificaDiagonalDireita();
+        Jogador jogador;
+
+        jogador = verificaVertical();
+        if(jogador != null){
+            return jogador;
+        }
+
+        jogador = verificaHorizontal();
+        if(jogador != null){
+            return jogador;
+        }
+
+        jogador = verificaDiagonalEsquerda();
+        if(jogador != null){
+            return jogador;
+        }
+
+        jogador = verificaDiagonalDireita();
+        if(jogador != null){
+            return jogador;
         }
         return null;
     }
