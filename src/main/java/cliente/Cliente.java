@@ -34,8 +34,7 @@ public class Cliente {
             System.out.println("Segundo jogador - " + jogo.segundoJogador(id).toUpperCase());
 
             while (true) {
-                verificaGanhador(id, jogo);
-                jogar(id,jogo);
+                jogar(id, jogo);
             }
 
         } catch (Exception e) {
@@ -46,6 +45,11 @@ public class Cliente {
 
     private static void jogar(int id, IJogo jogo) throws RemoteException{
         int meuTurno = jogo.verificaTurno(id);
+
+        if(verificaGanhador(id, jogo)){
+            sc.close();
+            System.exit(1);
+        }
 
         if (meuTurno == 1) {
             String simbolo = jogo.getSimbolo(id);
@@ -67,7 +71,7 @@ public class Cliente {
         }
     }
 
-    private static void verificaGanhador(int id, IJogo jogo) throws RemoteException {
+    private static boolean verificaGanhador(int id, IJogo jogo) throws RemoteException {
         int aGanhador = jogo.verificaGanhador(id);
 
         if(aGanhador == 1 || aGanhador == 2 || aGanhador == 3){
@@ -75,27 +79,25 @@ public class Cliente {
             if(aGanhador == 1){
                 imprimirTabuleiro(jogo.getTabuleiro());
                 System.out.println("\u001B[42m" + "\u001B[30m" + "Voce Ganhou!!" + "\u001B[0m");
-                sc.close();
-                System.exit(1);
+                return true;
             }else if(aGanhador == 2){
                 imprimirTabuleiro(jogo.getTabuleiro());
                 System.out.println("\u001B[41m" + "\u001B[30m" + "Voce Perdeu!!" + "\u001B[0m");
-                sc.close();
-                System.exit(1);
+                return true;
             }else{
                 imprimirTabuleiro(jogo.getTabuleiro());
                 System.out.println("\u001B[47m" + "\u001B[30m" + "Empate!!" + "\u001B[0m");
-                sc.close();
-                System.exit(1);
+                return true;
             }
         }
+        return false;
     }
 
     private static void imprimirTabuleiro(String[][] tabuleiro){
         System.out.println(" 0  1  2  3  4  5  6  7  8 ");
         for (String[] elementos : tabuleiro) {
             for (String elemento : elementos) {
-                System.out.print(elemento);
+                System.out.print("\u001B[44m" + "\u001B[30m" + elemento + "\u001B[0m");
             }
             System.out.println();
         }
