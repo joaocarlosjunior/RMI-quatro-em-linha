@@ -70,4 +70,5 @@ java -cp RMI-quatro-em-linha-1.0-SNAPSHOT.jar cliente.Cliente localhost [nome do
 ![](https://github.com/joaocarlosjunior/RMI-quatro-em-linha/blob/main/assets/exemplo-partida-diagonal-d.gif)
 ## Contato
 - [LinkedIn](https://www.linkedin.com/in/joaocarlosjr/)
+- [joaocarlos.cic1@gmail.com](mailto:joaocarlos.cic1@gmail.com)
 
