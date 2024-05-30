@@ -26,7 +26,7 @@ Java Development Kit (JDK) 8 ou superior.
 Serão necessario 3 terminais.
 1. Clone este repositório para o seu computador:
 ```sh
-git clone git@github.com:joaocarlosjunior/RMI-quatro-em-linha.git
+git clone git@github.com:joaocarlosjunior/rmi-quatro-em-linha.git
 ```
 2. Verifique a versão do seu JDK e altere no pom.xml para versão instalada em sua máquina:
 ```sh
@@ -34,7 +34,7 @@ java -version
 ```
 3. Navegue até o diretório clonado:
 ```sh
-cd RMI-quatro-em-linha
+cd rmi-quatro-em-linha
 ```
 4. Em um terminal compile e empacote o projeto:
 - Linux/unix
@@ -51,11 +51,11 @@ cd target
 ```
 6. Execute o servidor
 ```sh
-java -cp RMI-quatro-em-linha-1.0-SNAPSHOT.jar servidor.Servidor  
+java -cp rmi-quatro-em-linha-1.0-SNAPSHOT.jar servidor.Servidor  
 ```
 7. Em outros dois terminais execute os clientes
 ```sh
-java -cp RMI-quatro-em-linha-1.0-SNAPSHOT.jar cliente.Cliente localhost [nome do jogador]
+java -cp rmi-quatro-em-linha-1.0-SNAPSHOT.jar cliente.Cliente localhost [nome do jogador]
 ``` 
 
 
